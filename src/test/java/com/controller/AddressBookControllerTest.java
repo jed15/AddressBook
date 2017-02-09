@@ -61,7 +61,7 @@ public class AddressBookControllerTest {
         ResponseEntity<String> response = template.getForEntity("http://localhost:"+port+"/get?id=1",
                 String.class);
 
-        assertThat(response.getBody(),equalTo("{\"buddies\":[\"name\":\"Matt\",\"phone\":\"123\"],\"id\":1}"));
+        assertThat(response.getBody(),equalTo("{\"buddies\":[{\"name\":\"Matt\",\"phone\":\"123\"}],\"id\":1}"));
     }
 
     @Test
