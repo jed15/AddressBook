@@ -47,7 +47,14 @@ public class AddressBookControllerTest {
         ResponseEntity<String> response = template.getForEntity("http://localhost:"+port+"/add?bookid=1&name=Matt&phone=123",
                 String.class);
         assertNotNull(addressBookRepository.findOne(1));
-        assertNotNull(buddyInfoRepository.findOne("Matt"));
+        BuddyInfo buddy=buddyInfoRepository.findOne(1);
+        assertEquals("Matt",buddy.getName());
+        assertEquals("123",buddy.getPhone());
+
+        response = template.getForEntity("http://localhost:"+port+"/add?bookid=1&name=Pete&phone=987&address=654",
+                String.class);
+        buddy=buddyInfoRepository.findByName("Pete").get(0);
+        assertEquals("654", buddy.getAddress());
 
     }
 
@@ -56,12 +63,12 @@ public class AddressBookControllerTest {
     @Test
     public void getBook() throws Exception {
         AddressBook book = new AddressBook();
-        book.addBuddy(new BuddyInfo("Matt","123"));
+        book.addBuddy(new BuddyInfo("Matt","123","567"));
         addressBookRepository.save(book);
         ResponseEntity<String> response = template.getForEntity("http://localhost:"+port+"/get?id=1",
                 String.class);
 
-        assertThat(response.getBody(),equalTo("{\"buddies\":[{\"name\":\"Matt\",\"phone\":\"123\"}],\"id\":1}"));
+        assertThat(response.getBody(),equalTo("{\"buddies\":[{\"id\":1,\"name\":\"Matt\",\"phone\":\"123\",\"address\":\"567\"}],\"id\":1}"));
     }
 
     @Test
@@ -69,11 +76,11 @@ public class AddressBookControllerTest {
         AddressBook book = new AddressBook();
         book.addBuddy(new BuddyInfo("Matt","123"));
         addressBookRepository.save(book);
-        ResponseEntity<String> response = template.getForEntity("http://localhost:"+port+"/remove?bookid="+book.getId()+"&name=Matt&phone=123",
+        ResponseEntity<String> response = template.getForEntity("http://localhost:"+port+"/remove?bookid="+book.getId()+"&buddyId=1",
                 String.class);
 
         assertThat(response.getBody(),equalTo("{\"buddies\":[],\"id\":1}"));
-        assertNull(buddyInfoRepository.findOne("Matt"));
+        assertNull(buddyInfoRepository.findOne(1));
     }
 
 }

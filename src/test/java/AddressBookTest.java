@@ -26,7 +26,7 @@ public class AddressBookTest {
     public void displayBuddies() throws Exception {
         BuddyInfo buddy = new BuddyInfo("Matt","123-456-7890");
         book.addBuddy(buddy);
-        assertEquals("Matt, 123-456-7890\n", book.displayBuddies());
+        assertEquals("Matt, 123-456-7890, \n", book.displayBuddies());
     }
 
     @Test

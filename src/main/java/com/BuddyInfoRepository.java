@@ -9,7 +9,7 @@ import java.util.List;
  * Created by jeremydunsmore on 1/26/2017.
  */
 @RepositoryRestResource
-public interface BuddyInfoRepository  extends CrudRepository<BuddyInfo,String>{
+public interface BuddyInfoRepository  extends CrudRepository<BuddyInfo,Integer>{
     List<BuddyInfo> findByName(String name);
     List<BuddyInfo> findByPhone(String phone);
 }
