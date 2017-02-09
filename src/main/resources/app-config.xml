@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="mainFrame" class="com.MainFrame" init-method="init">
+        <property name="components">
+            <list>
+                <ref bean="buddyPanel"></ref>
+                <ref bean="addressPanel"></ref>
+
+            </list>
+        </property>
+    </bean>
+    <bean id="buddyPanel" class="com.BuddyPanel" init-method="init">
+        <property name="nameField" ref="nameField"></property>
+        <property name="phoneField" ref="phoneField"></property>
+        <property name="addListener" ref="addBuddyListener"></property>
+
+    </bean>
+    <bean id="book" class="com.AddressBook">
+    </bean>
+    <bean id="addBuddyListener" class="com.AddBuddyListener">
+        <property name="phoneField" ref="phoneField"></property>
+        <property name="nameField" ref="nameField"></property>
+        <property name="book" ref="book"></property>
+    </bean>
+    <bean id="addressPanel" class="com.AddressPanel" init-method="init">
+        <property name="book" ref="book"></property>
+        <property name="buddiesList" ref="list"></property>
+        <property name="refreshListener" ref="refreshListener"></property>
+    </bean>
+    <bean id="refreshListener" class="com.RefreshListener">
+        <property name="book" ref="book"></property>
+        <property name="list" ref="list"></property>
+    </bean>
+    <bean id="nameField" class="javax.swing.JTextField"></bean>
+    <bean id="phoneField" class="javax.swing.JTextField"></bean>
+    <bean id="list" class="javax.swing.JList"></bean>
+</beans>
