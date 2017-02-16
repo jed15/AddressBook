@@ -15,9 +15,17 @@ public class AddressBook {
 
     private List<BuddyInfo> buddies;
 
+    private String name;
 
     private Integer id;
-    public AddressBook() {
+
+
+    public AddressBook(){
+        this.buddies = new ArrayList<BuddyInfo>();
+        this.name="";
+    }
+    public AddressBook(String name) {
+        this.name = name;
         this.buddies = new ArrayList<BuddyInfo>();
     }
 
@@ -69,5 +77,13 @@ public class AddressBook {
 
     public void setId(Integer id){
         this.id=id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

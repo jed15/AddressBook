@@ -42,6 +42,13 @@ public class AddressBookRestController {
         return book;
     }
 
+    @RequestMapping("/create")
+    public AddressBook getBook(@RequestParam(name="name",required=false) String name){
+        AddressBook book = new AddressBook(name);
+        addressRepo.save(book);
+        return book;
+    }
+
     @RequestMapping("/get")
     public AddressBook getBook(@RequestParam("id") Integer id){
         AddressBook book=addressRepo.findOne(id);

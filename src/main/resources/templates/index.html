@@ -8,5 +8,17 @@
 <body>
 <h1> Welcome to the Address Book!</h1>
 
+<!--/*@thymesVar id="books" type="java.lang.Iterable"*/-->
+<!--/*@thymesVar id="name" type="java.lang.String"*/-->
+<div th:each="book : ${books}">
+   <a th:href="@{/book(id=${book.id})}"  th:text="${book.name}"/>
+<br/>
+</div>
+<br/>
+<h3> Create a new book</h3>
+<form action="#" th:action="@{/book}" th:object="${newBook}" method="post">
+    <p>Name: <input type="text" th:field="*{name}" /></p>
+    <p><input type="submit" value="Submit" /></p>
+</form>
 </body>
 </html>
