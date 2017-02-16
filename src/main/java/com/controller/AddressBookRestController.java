@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by jeremydunsmore on 2/2/2017.
  */
 @RestController
-public class AddressBookController {
+public class AddressBookRestController {
 
 
     @Autowired
