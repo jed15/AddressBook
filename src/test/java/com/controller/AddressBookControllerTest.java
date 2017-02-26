@@ -40,14 +40,14 @@ public class AddressBookControllerTest {
 
     @Test
     public void addBuddy() throws Exception {
-        ResponseEntity<String> response = template.getForEntity("http://localhost:"+port+"/add?bookid=1&name=Matt&phone=123",
+        template.getForEntity("http://localhost:"+port+"/add?bookid=1&name=Matt&phone=123",
                 String.class);
         assertNotNull(addressBookRepository.findOne(1));
         BuddyInfo buddy=buddyInfoRepository.findOne(1);
         assertEquals("Matt",buddy.getName());
         assertEquals("123",buddy.getPhone());
 
-        response = template.getForEntity("http://localhost:"+port+"/add?bookid=1&name=Pete&phone=987&address=654",
+       template.getForEntity("http://localhost:"+port+"/add?bookid=1&name=Pete&phone=987&address=654",
                 String.class);
         buddy=buddyInfoRepository.findByName("Pete").get(0);
         assertEquals("654", buddy.getAddress());

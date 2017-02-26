@@ -54,6 +54,12 @@ public class AddressBookRestController {
         AddressBook book=addressRepo.findOne(id);
         return book;
     }
+    
+    @RequestMapping("/getBooks")
+    public Iterable<AddressBook>  getBooks(){
+        Iterable<AddressBook> books=addressRepo.findAll();
+        return books;
+    }
 
     @RequestMapping("/remove")
     public AddressBook removeBuddy(@RequestParam("bookid") Integer bookid,@RequestParam("buddyId") Integer buddyId){

@@ -12,7 +12,7 @@
 
 <!--/*@thymesVar id="books" type="java.lang.Iterable"*/-->
 <!--/*@thymesVar id="name" type="java.lang.String"*/-->
-<div th:each="book : ${books}">
+<div id ="books" th:each="book : ${books}">
    <a th:href="@{/book(id=${book.id})}"  th:text="${book.name}"/>
 <br/>
 </div>
