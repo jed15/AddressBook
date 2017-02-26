@@ -3,6 +3,9 @@
 
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="addressbook.js"></script>
     <meta charset="UTF-8"/>
     <title>Address Book</title>
@@ -13,14 +16,14 @@
 <!--/*@thymesVar id="books" type="java.lang.Iterable"*/-->
 <!--/*@thymesVar id="name" type="java.lang.String"*/-->
 <div id ="books" th:each="book : ${books}">
-   <a th:href="@{/book(id=${book.id})}"  th:text="${book.name}"/>
+   <a class="book" th:href="@{/book(id=${book.id})}"  th:text="${book.name}"/>
 <br/>
 </div>
 <br/>
 <h3> Create a new book</h3>
-<form action="#" th:action="@{/book}" th:object="${newBook}" method="post">
-    <p>Name: <input type="text" th:field="*{name}" /></p>
-    <p><input type="submit" value="Submit" /></p>
+<form id= "bookForm" action="#" th:action="@{/book}" th:object="${newBook}" method="post">
+    <p>Name: <input class="name-input" type="text" th:field="*{name}" /></p>
+    <p><input class="create" type="submit" value="Submit" /></p>
 </form>
 </body>
 </html>
